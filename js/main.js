@@ -1,3 +1,4 @@
+//obtener nombre del usuario y agregarlo al html
 function saludar(){
     let nombre = prompt("ingrese su nombre")
     alert("Bienvenido " + nombre);
@@ -5,6 +6,7 @@ function saludar(){
     titulo.innerText = "Bienvenido " + nombre + " a SOUL KING"
 }
 
+//objeto constructor para declarar los productos
 class productos{
     constructor(producto, marca, precio){
         this.producto = producto
@@ -31,9 +33,13 @@ let precio = [
     {producto: "Soporte", marca: "Pearl", precio: "35000"},
     {producto: "Soporte", marca: "Dixon", precio: "31000"},
 ]
+
+//funcion para ver los preccios en la consola y poder ingresarlos en el prompt
 function verPrecios(){
     precio.forEach((producto)=> {console.log (`${producto.producto} ${producto.marca} ${producto.precio}`)})
 }
+
+//funcion que me permite agregar productos al carrito
 function cargarProducto(){
     let producto = prompt("Elija que producto desea comprar");
     let marca = prompt ("Que marca desea comprar")
@@ -43,10 +49,12 @@ function cargarProducto(){
     alert("producto añadido al carrito")
 }
 
+//me deja ver el carrito
 function verCarrito(){
     carrito.forEach((producto) => alert(`Usted ha elegido ${producto.producto} de la marca ${producto.marca} por el precio de $ ${producto.precio}`))
 }
 
+//muestra el precio mas bajo
 function oferta(){
     const oferta = precio.filter((producto) => producto.precio < 8000);
     for (const ofertas of oferta){
@@ -55,6 +63,7 @@ function oferta(){
     }
 }
 
+//suma el total de lo que salen todos los productos en el carrito
 function finalizarCompra(){
     const total = carrito.reduce((acc, elemento) => acc + elemento.precio, 0);
     alert(`El total de su compra es de $ ${total}`)
@@ -66,8 +75,8 @@ let carrito = []
 saludar()
 verPrecios()
 
+//prompt para poder elegir opciones
 let opcion = prompt("Ingrese una opción \n 1: Ingresar productos \n 2: Mostrar ofertas \n 3: Ver carrito \n 4: Finalizar compra \n 5: Salir")
-
 while (opcion !== "5"){
     if (opcion == "1"){cargarProducto(carrito)}
     else if (opcion == "2"){oferta()}
