@@ -1,107 +1,80 @@
 function saludar(){
-    let user = prompt("ingrese su nombre")
-    alert("Bienvenido " + user);
+    let nombre = prompt("ingrese su nombre")
+    alert("Bienvenido " + nombre);
+    const titulo = document.getElementById("titulo")
+    titulo.innerText = "Bienvenido " + nombre + " a SOUL KING"
 }
 
-function seleccionarProducto(){
-    producto = prompt("Seleccione que clase de producto desea comprar \n 1: Hardware \n 2: Platillos \n 3: Parches \n 4: Baterias").toLowerCase()
-    if (producto == "1" || producto == "hardware") 
-        {marca1 = prompt("Seleccione la marca \n 1: Sonor \n 2: Tama \n 3: Pearl \n 4: Dixon").toLocaleLowerCase()
-            if((marca1 == "1" || marca1 == "sonor")){alert("Seleccionaste hardware Sonor");}
-            else if ((marca1 == "2" || marca1 == "tama")){alert("Seleccionaste hardware Tama");}
-            else if ((marca1 == "3" || marca1 == "pearl")){alert("Seleccionaste hardware Pearl");}
-            else if ((marca1 == "4" || marca1 == "dixon")){alert("Seleccionaste hardware Dixon");}
-            else{alert("Ingreso una opción invalida, por favor vuelva a intentarlo.")
-            seleccionarProducto()}
-                preciosFinalesHardware()
-            }
-    else if (producto == "2" || producto == "platillos")
-        {marca2 = prompt("Seleccione la marca \n 1: Zildjian \n 2: Meinl \n 3: Sabian \n 4: Istanbul").toLocaleLowerCase()
-            if((marca2 == "1" || marca2 == "zildjian")){alert("Seleccionaste platillos Zildjian");}
-            else if((marca2 == "2" || marca2 == "meinl")){alert("Seleccionaste platillos Meinl");}
-            else if((marca2 == "3" || marca2 == "sabian")){alert("Seleccionaste platillos Sabian");}
-            else if((marca2 == "4" || marca2 == "zildjian")){alert("Seleccionaste platillos Istambul");}
-            else{alert("Ingreso una opción invalida, por favor vuelva a intentarlo.")
-            seleccionarProducto()}
-                preciosFinalesPlatillos()}
-    else if (producto == "3" || producto == "parches")
-        {marca3 = prompt("Seleccione la marca \n 1: Remo \n 2: Evans \n 3: Aquarian \n 4: Encore").toLocaleLowerCase()
-            if((marca3 == "1" || marca3 == "remo")){alert("Seleccionaste parches Remo");}
-            else if((marca3 == "2" || marca3 == "evans")){alert("Seleccionaste parches Evans");}
-            else if((marca3 == "3" || marca3 == "aquarian")){alert("Seleccionaste parches Aquarian");}
-            else if((marca3 == "4" || marca3 == "encore")){alert("Seleccionaste parches Encore");}
-            else{alert("Ingreso una opción invalida, por favor vuelva a intentarlo.")
-            seleccionarProducto()}
-                preciosFinalesParches()}
-    else if (producto == "4" || producto == "baterias") 
-        {marca4 = prompt("Seleccione la marca \n 1: Sonor \n 2: Tama \n 3: Pearl \n 4: DW").toLocaleLowerCase()
-            if((marca4 == "1" || marca4 == "sonor")){alert("Seleccionaste baterias Sonor");}
-            else if((marca4 == "2" || marca4 == "tama")){alert("Seleccionaste baterias Tama");}
-            else if((marca4 == "3" || marca4 == "pearl")){alert("Seleccionaste baterias Pearl");}
-            else if((marca4 == "4" || marca4 == "dw")){alert("Seleccionaste baterias DW");}
-            else{alert("Ingreso una opción invalida, por favor vuelva a intentarlo.")
-            seleccionarProducto()}
-                preciosFinalesBaterias()}
-    else {alert("Ingreso una opción invalida, por favor vuelva a intentarlo.")
-        seleccionarProducto()
-        }
+class productos{
+    constructor(producto, marca, precio){
+        this.producto = producto
+        this.marca = marca
+        this. precio = precio
+    }
 }
 
-function preciosFinalesHardware(){
-    if((marca1 == "1" || marca1 == "sonor")){alert("El precio final de su soporte es de $" + (soporteSonor * 1.21));}
-    else if((marca1 == "2" || marca1 == "tama")){alert("El precio final de su soporte es de $" + (soporteTama * 1.21));}
-    else if((marca1 == "3" || marca1 == "pearl")){alert("El precio final de su soporte es de $" + (soportePearl * 1.21));}
-    else if((marca1 == "4" || marca1 == "dixon")){alert("El precio final de su soporte es de $" + (soporteDixon * 1.21));}
-        opcion = prompt("Que desea hacer a continuación \n 1: Ver más productos \n 2: Salir");
+let precio = [
+    {producto: "Platillo", marca: "Zildjian", precio: "100000"},
+    {producto: "Platillo", marca: "Sabian", precio: "85000"},
+    {producto: "Platillo", marca: "Meinl", precio: "93000"},
+    {producto: "Platillo", marca: "Istanbul", precio: "97000"},
+    {producto: "Parche", marca: "Remo", precio: "8000"},
+    {producto: "Parche", marca: "Evans", precio: "9000"},
+    {producto: "Parche", marca: "Aquarian", precio: "8000"},
+    {producto: "Parche", marca: "Encore", precio: "3600"},
+    {producto: "Bateria", marca: "Sonor", precio: "745500"},
+    {producto: "Bateria", marca: "Tama", precio: "390000"},
+    {producto: "Bateria", marca: "Pearl", precio: "587000"},
+    {producto: "Bateria", marca: "DW", precio: "978000"},
+    {producto: "Soporte", marca: "Sonor", precio: "46500"},
+    {producto: "Soporte", marca: "Tama", precio: "42000"},
+    {producto: "Soporte", marca: "Pearl", precio: "35000"},
+    {producto: "Soporte", marca: "Dixon", precio: "31000"},
+]
+function verPrecios(){
+    precio.forEach((producto)=> {console.log (`${producto.producto} ${producto.marca} ${producto.precio}`)})
+}
+function cargarProducto(){
+    let producto = prompt("Elija que producto desea comprar");
+    let marca = prompt ("Que marca desea comprar")
+    let precio = parseInt(prompt ("ingrese el precio"))
+    const nuevoProducto = new productos(producto, marca, precio)
+    carrito.push(nuevoProducto)
+    alert("producto añadido al carrito")
 }
 
-function preciosFinalesPlatillos(){   
-    if((marca2 == "1" || marca2 == "zildjian")){alert("El precio final de su platillo es de $" + (platilloZildjian * 1.21));}
-    else if((marca2 == "2" || marca2 == "meinl")){alert("El precio final de su platillo es de $" + (platilloMeinl * 1.21));}
-    else if((marca2 == "3" || marca2 == "sabian")){alert("El precio final de su platillo es de $" + (platilloSabian * 1.21));}
-    else if((marca2 == "4" || marca2 == "istanbul")){alert("El precio final de su platillo es de $" + (platilloIstanbul * 1.21));}
-        opcion = prompt("Que desea hacer a continuación \n 1: Ver más productos \n 2: Salir");
+function verCarrito(){
+    carrito.forEach((producto) => alert(`Usted ha elegido ${producto.producto} de la marca ${producto.marca} por el precio de $ ${producto.precio}`))
 }
 
-function preciosFinalesParches(){
-    if((marca3 == "1" || marca3 == "remo")){alert("El precio final de su parche es de $" + (parcheRemo * 1.21));}
-    else if((marca3 == "2" || marca3 == "evans")){alert("El precio final de su parche es de $" + (parcheEvans * 1.21));}
-    else if((marca3 == "3" || marca3 == "aquarian")){alert("El precio final de su parche es de $" + (parcheAquarian * 1.21));}
-    else if((marca3 == "4" || marca3 == "encore")){alert("El precio final de su parche es de $" + (parcheEncore * 1.21));}
-        opcion = prompt("Que desea hacer a continuación \n 1: Ver más productos \n 2: Salir");
+function oferta(){
+    const oferta = precio.filter((producto) => producto.precio < 8000);
+    for (const ofertas of oferta){
+        alert(`La oferta del dia es un parche ${ofertas.marca} por el precio de $ ${ofertas.precio}`
+        );
+    }
 }
 
-function preciosFinalesBaterias(){
-    if((marca4 == "1" || marca4 == "sonor")){alert("El precio final de su platillo es de $" + (bateriaSonor * 1.21));}
-    else if((marca4 == "2" || marca4 == "tama")){alert("El precio final de su platillo es de $" + (bateriaTama * 1.21));}
-    else if((marca4 == "3" || marca4 == "pearl")){alert("El precio final de su platillo es de $" + (bateriaPearl * 1.21));}
-    else if((marca4 == "4" || marca4 == "dw")){alert("El precio final de su platillo es de $" + (bateriaDW * 1.21));}
-        opcion = prompt("Que desea hacer a continuación \n 1: Ver más productos \n 2: Salir");
+function finalizarCompra(){
+    const total = carrito.reduce((acc, elemento) => acc + elemento.precio, 0);
+    alert(`El total de su compra es de $ ${total}`)
 }
 
-let platilloZildjian = 100000;
-let platilloSabian = 85000;
-let platilloMeinl = 93000;
-let platilloIstanbul = 97000;
-let parcheRemo = 8000;
-let parcheEvans = 9000;
-let parcheAquarian = 8000;
-let parcheEncore = 3600;
-let bateriaSonor = 745500;
-let bateriaTama = 390000;
-let bateriaPearl = 587000;
-let bateriaDW = 978000;
-let soporteSonor = 46500;
-let soporteTama = 42000;
-let soportePearl = 35000;
-let soporteDixon = 31000;
+let carrito = []
+
 
 saludar()
+verPrecios()
 
-let opcion = prompt("ingrese una opción \n 1: Ver productos \n 2: Salir")
+let opcion = prompt("Ingrese una opción \n 1: Ingresar productos \n 2: Mostrar ofertas \n 3: Ver carrito \n 4: Finalizar compra \n 5: Salir")
 
-while(opcion !== "2"){
- seleccionarProducto()
+while (opcion !== "5"){
+    if (opcion == "1"){cargarProducto(carrito)}
+    else if (opcion == "2"){oferta()}
+    else if (opcion == "3"){verCarrito()}
+    else if (opcion == "4"){ finalizarCompra()}
+    opcion = prompt("Vuelva a ingresar una opción \n 1: Ingresar productos \n 2: Mostrar ofertas \n 3: Ver carrito \n 4: Finalizar compra \n 5: Salir")
 }
+
 
 alert("Gracias por su compra!")
